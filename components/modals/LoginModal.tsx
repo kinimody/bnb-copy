@@ -1,7 +1,7 @@
 'use client';
 
 import { useCallback, useState } from "react";
-import { signIn } from 'next-auth/react';
+import { signIn,  } from 'next-auth/react';
 import { 
   FieldValues, 
   SubmitHandler, 
@@ -25,6 +25,9 @@ const LoginModal = () => {
   const loginModal = useLoginModal();
   const registerModal = useRegisterModal();
   const [isLoading, setIsLoading] = useState(false);
+
+
+ 
 
   const { 
     register, 
@@ -123,7 +126,9 @@ const LoginModal = () => {
     </div>
   )
 
+  
   return (
+    
     <Modal
       disabled={isLoading}
       isOpen={loginModal.isOpen}

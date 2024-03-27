@@ -8,14 +8,23 @@ import {prisma} from "@/libs/prismaClient"
 
 export const authOptions: AuthOptions = {
   adapter: PrismaAdapter(prisma),
+
   providers: [
     GithubProvider({
       clientId: process.env.GITHUB_ID as string,
-      clientSecret: process.env.GITHUB_SECRET as string
+      clientSecret: process.env.GITHUB_SECRET as string,
+      /* allowDangerousEmailAccountLinking: true, */
+      authorization: {
+        params: { prompt: 'consent', access_type: 'offline', response_type: 'code' }
+      }
     }),
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID as string,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET as string
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
+      /* allowDangerousEmailAccountLinking: true, */
+      authorization: {
+        params: { prompt: 'consent', access_type: 'offline', response_type: 'code' }
+      }
     }),
     CredentialsProvider({
       name: 'credentials',
@@ -23,6 +32,8 @@ export const authOptions: AuthOptions = {
         email: { label: 'email', type: 'text' },
         password: { label: 'password', type: 'password' }
       },
+
+
       async authorize(credentials) {
         if (!credentials?.email || !credentials?.password) {
           throw new Error('Invalid credentials');
@@ -53,8 +64,9 @@ export const authOptions: AuthOptions = {
   ],
   pages: {
     signIn: '/',
+    error:'/auth/error'
   },
-  debug: process.env.NODE_ENV === 'development',
+  debug: process.env.NODE_ENV === 'development', 
   session: {
     strategy: "jwt",
   },
