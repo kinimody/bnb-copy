@@ -4,8 +4,13 @@ import Container from "@/components/Container";
 import Logo from "@/components/navbar/Logo";
 import Search from "@/components/navbar/Search";
 import UserMenu from "@/components/navbar/UserMenu";
+import { SafeUser } from "@/app/types";
 
-const Navbar = () => {
+
+interface NavbarProps {
+  currentUser:  SafeUser | null
+}
+const Navbar = ({currentUser}:NavbarProps) => {
   return (
     <div className="fixed w-full bg-white z-10 shadow-sm">
       <div className="py-4 border-b-[1px]">
@@ -18,7 +23,7 @@ const Navbar = () => {
               </span>
             </div>
             <Search/>
-            <UserMenu/>
+            <UserMenu currentUser={currentUser}/>
           </div>
         </Container>
       </div>
