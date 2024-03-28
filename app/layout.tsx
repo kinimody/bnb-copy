@@ -7,13 +7,12 @@ import RegisterModal from "@/components/modals/RegisterModal";
 import ToasterProvider from "./providers/ToasterProvider";
 import LoginModal from "@/components/modals/LoginModal";
 import getCurrentUser from "./actions/getCurrentUser";
-
-
+import RentModal from "@/components/modals/RentModal";
 
 const inter = Inter({ subsets: ["latin"] });
 const font = Nunito({
-  subsets:["latin"]
-})
+  subsets: ["latin"],
+});
 
 export const metadata: Metadata = {
   title: "BnB",
@@ -25,19 +24,18 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  
   const currentUser = await getCurrentUser();
+ 
   return (
-    
     <html lang="en">
-
       <body className={font.className}>
-        <ToasterProvider/>
-        <Navbar currentUser={currentUser}/>
-        <LoginModal/>
-        <RegisterModal/>
-        {children}
-        </body>
+        <ToasterProvider />
+        <Navbar currentUser={currentUser} />
+        <LoginModal />
+        <RegisterModal />
+        <RentModal />
+        <div className="pb-20 pt-28">{children}</div>
+      </body>
     </html>
   );
 }

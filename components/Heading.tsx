@@ -3,18 +3,19 @@ import React from 'react'
 
 interface HeadingProps {
     title: string,
-    subTitle?: string,
-    center?: boolean
+    subtitle?: string,
+    center?: boolean,
+    primary?: boolean
 }
 
-const Heading = ({title,subTitle,center}:HeadingProps) => {
+const Heading = ({title,subtitle,center,primary}:HeadingProps) => {
   return (
     <div className={center? "text-center" :"text start"}>
         <div className="text-2xl font-bold">
             {title}
         </div>
-        <div className="font-light text-neutral-500 mt-2">
-            {subTitle}
+        <div className={primary ? "font-light text-rose-500 mt-2" : "font-light text-neutral-500 mt-2"}>
+            {subtitle}
         </div>
     </div>
   )

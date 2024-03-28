@@ -23,7 +23,7 @@ const CategoryBox = ({
     let currentQuery ={};
     if (params) {
         currentQuery = qs.parse(params.toString())
-        console.log(currentQuery)
+       
     }
     const updatedQuery: any = {
         ...currentQuery,
@@ -47,7 +47,7 @@ const CategoryBox = ({
       onClick={handleClick}
       className={`flex flex-col items-center justify-center gap-2 p-3 border-b-2 hover:text-neutral-800 cursor-pointer transition ${
         selected
-          ? "border-b-neutral-800 text-neutral-8000"
+          ? "border-rose-500 text-neutral-8000"
           : "border-transparent text-neutral-500"
       }`}
     >
