@@ -83,6 +83,7 @@ const ListingClient: React.FC<ListingClinetProps> = ({
         end: new Date(reservation.endDate)
       });
       dates = [...dates, ...range];
+      console.log(dates)
     });
     return dates;
   },[reservations]);
